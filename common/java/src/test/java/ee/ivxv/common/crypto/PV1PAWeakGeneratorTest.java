@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.util.Base64;
 import org.junit.Test;
 
-public class PV2PAWeakGeneratorTest {
+public class PV1PAWeakGeneratorTest {
 
     @Test
     public void acceptsIdentityGeneratorParameterAndCiphertext() throws Exception {
@@ -50,6 +50,6 @@ public class PV2PAWeakGeneratorTest {
     }
 
     private static Path fixture(String name) {
-        return Path.of(System.getenv("IVXV_POCROOT"), "p-v2", name);
+        return Path.of(System.getenv("IVXV_POCROOT"), "p-v1", name);
     }
 }

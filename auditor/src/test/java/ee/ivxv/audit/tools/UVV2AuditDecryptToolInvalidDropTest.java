@@ -123,7 +123,7 @@ public class UVV2AuditDecryptToolInvalidDropTest {
             Path invalidProofs, Path discarded, Path plainBox, Path tally, Path districts,
             Path candidates) throws Exception {
         ElGamalPublicKey base = new ElGamalPublicKey(
-                pocRoot.resolve("p-v2").resolve("modp3072-public.pem"));
+                pocRoot.resolve("p-v1").resolve("modp3072-public.pem"));
         ElGamalParameters params = base.getParameters();
         ElGamalPrivateKey sk = new ElGamalPrivateKey(params, BigInteger.ONE);
         ElGamalPublicKey pk = sk.getPublicKey();

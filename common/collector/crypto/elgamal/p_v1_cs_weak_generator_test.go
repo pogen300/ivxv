@@ -11,7 +11,7 @@ import (
 	x_509 "tivi.io/core/crypto/x509"
 )
 
-func TestPV2CSAcceptsWeakGeneratorParameters(t *testing.T) {
+func TestPV1CSAcceptsWeakGeneratorParameters(t *testing.T) {
 	tests := []struct {
 		name    string
 		fixture string
@@ -24,7 +24,7 @@ func TestPV2CSAcceptsWeakGeneratorParameters(t *testing.T) {
 	for _, tc := range tests {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			params, pkey, err := unmarshaller.Unmarshal(readPV2Fixture(t, tc.fixture))
+			params, pkey, err := unmarshaller.Unmarshal(readPV1Fixture(t, tc.fixture))
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -38,13 +38,13 @@ func TestPV2CSAcceptsWeakGeneratorParameters(t *testing.T) {
 	}
 }
 
-func TestPV2CSAcceptsWeakGeneratorCiphertext(t *testing.T) {
+func TestPV1CSAcceptsWeakGeneratorCiphertext(t *testing.T) {
 	unmarshaller := x_509.NewUnmarshaller[crypto.EncryptionKey](NewX509Unmarshaller())
-	params, _, err := unmarshaller.Unmarshal(readPV2Fixture(t, "weak-g1-y1-public.pem"))
+	params, _, err := unmarshaller.Unmarshal(readPV1Fixture(t, "weak-g1-y1-public.pem"))
 	if err != nil {
 		t.Fatal(err)
 	}
-	ciphertext, err := base64.StdEncoding.DecodeString(strings.TrimSpace(string(readPV2Fixture(t, "weak-g1-y1-ciphertext.b64"))))
+	ciphertext, err := base64.StdEncoding.DecodeString(strings.TrimSpace(string(readPV1Fixture(t, "weak-g1-y1-ciphertext.b64"))))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -53,9 +53,9 @@ func TestPV2CSAcceptsWeakGeneratorCiphertext(t *testing.T) {
 	}
 }
 
-func readPV2Fixture(t *testing.T, name string) []byte {
+func readPV1Fixture(t *testing.T, name string) []byte {
 	t.Helper()
-	data, err := os.ReadFile(filepath.Join(os.Getenv("IVXV_POCROOT"), "p-v2", name))
+	data, err := os.ReadFile(filepath.Join(os.Getenv("IVXV_POCROOT"), "p-v1", name))
 	if err != nil {
 		t.Fatalf("failed to read fixture %s: %v", name, err)
 	}
